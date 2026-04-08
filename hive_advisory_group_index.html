@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hive Advisory Group</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  color: #0A2540;
+  line-height: 1.6;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 22px;
+}
+
+nav a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #0A2540;
+}
+
+.cta {
+  background: #2563EB;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.hero {
+  background: linear-gradient(135deg, #0A2540 20%, #1FA4A9);
+  color: white;
+  padding: 100px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-text {
+  max-width: 520px;
+}
+
+.hero h1 {
+  font-size: 52px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.hero-visual {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle at top, #1FA4A9, #0A2540);
+  border-radius: 20px;
+  opacity: 0.9;
+}
+
+.section {
+  padding: 80px 60px;
+}
+
+.center {
+  text-align: center;
+}
+
+.light {
+  background: #F9FAFB;
+}
+
+.cred {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.subcred {
+  color: #6B7280;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #E5E7EB;
+  padding: 30px;
+  border-radius: 12px;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.split {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.split-text {
+  flex: 1;
+}
+
+.split-visual {
+  flex: 1;
+  height: 300px;
+  background: linear-gradient(135deg, #2563EB, #1FA4A9);
+  border-radius: 20px;
+}
+
+.cta-section {
+  background: linear-gradient(135deg, #0A2540, #1FA4A9);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  background: #020617;
+  color: white;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .split {
+    flex-direction: column;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">Hive Advisory Group</div>
+  <div>
+    <a href="#">Services</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <a class="cta" href="#">Schedule Call</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>AI strategy that actually gets implemented</h1>
+    <p>We help mid-sized companies design and execute practical AI roadmaps—led by consultants with experience at leading global firms.</p>
+    <a class="cta" href="#">Schedule a Strategy Call</a>
+  </div>
+  <div class="hero-visual"></div>
+</section>
+
+<section class="section center">
+  <div class="cred">
+    Built by leaders with experience across top global consulting firms
+  </div>
+  <div class="subcred">
+    Fortune 500 experience • Cross-industry AI transformation • Strategy through execution
+  </div>
+</section>
+
+<section class="section light center">
+  <h2>Expert AI Consulting Solutions</h2>
+  <p>Enterprise-grade AI strategy without the overhead</p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>AI Roadmap Creation</h3>
+      <p>Identify where AI drives measurable business value.</p>
+    </div>
+
+    <div class="card">
+      <h3>Use Case Prioritization</h3>
+      <p>Focus investment on high-impact opportunities.</p>
+    </div>
+
+    <div class="card">
+      <h3>Execution Support</h3>
+      <p>Turn strategy into deployed, working solutions.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="split">
+    <div class="split-text">
+      <h2>A Network, Not a Bench</h2>
+      <p>
+        Traditional consulting firms sell you the team they have.
+        We build the team you actually need—drawing from a network
+        of experienced operators and consultants.
+      </p>
+
+      <ul>
+        <li>Senior-level expertise from day one</li>
+        <li>No unnecessary overhead</li>
+        <li>Teams tailored to each engagement</li>
+      </ul>
+    </div>
+
+    <div class="split-visual"></div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Let’s Build Your AI Roadmap</h2>
+  <br>
+  <a class="cta" href="#">Schedule a Strategy Call</a>
+</section>
+
+<footer>
+  <p>© 2026 Hive Advisory Group</p>
+</footer>
+
+</body>
+</html>
