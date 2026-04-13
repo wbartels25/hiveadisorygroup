@@ -10,3 +10,13 @@
   from = "/phase2-strategy-roadmap"
   to = "/phase2-strategy-roadmap.html"
   status = 200
+
+[[redirects]]
+  from = "/phase3-implementation-advisory"
+  to = "/phase3-implementation-advisory.html"
+  status = 200
+
+[[redirects]]
+  from = "/phase4-change-capability"
+  to = "/phase4-change-capability.html"
+  status = 200
