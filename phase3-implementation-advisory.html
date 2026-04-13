@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phase 3: Implementation Advisory - Hive Advisory Group</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--navy:#0d1f3c;--navy-mid:#122347;--blue-accent:#1a6db5;--blue-bright:#3a8fd4;--cyan-italic:#4ab3e8;--white:#ffffff;--off-white:#f4f6f9;--text-muted:#8a9bb5;--border-light:rgba(58,143,212,0.18);}
+body{font-family:"Georgia",serif;color:var(--navy);background:var(--white);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,31,60,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border-light);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;}
+.nav-logo{display:flex;align-items:center;gap:12px;color:var(--white);}
+.nav-logo-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--blue-bright),var(--blue-accent));clip-path:polygon(50% 0%,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1;}
+.nav-logo-text .brand{font-size:18px;font-weight:700;letter-spacing:3px;font-family:"Helvetica Neue",sans-serif;}
+.nav-logo-text .sub{font-size:9px;letter-spacing:4px;opacity:0.6;font-family:"Helvetica Neue",sans-serif;}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{color:rgba(255,255,255,0.75);font-family:"Helvetica Neue",sans-serif;font-size:14px;letter-spacing:0.5px;transition:color .2s;}
+.nav-links a:hover{color:var(--white);}
+.btn-primary{background:var(--blue-accent);color:var(--white);padding:10px 22px;border-radius:6px;font-family:"Helvetica Neue",sans-serif;font-size:14px;font-weight:600;border:2px solid var(--blue-bright);transition:background .2s,transform .15s;}
+.btn-primary:hover{background:var(--blue-bright);transform:translateY(-1px);}
+.phase-nav{position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(255,255,255,0.97);border-bottom:1px solid #e2e8f0;display:flex;gap:0;}
+.phase-nav-item{flex:1;padding:14px 20px;font-family:"Helvetica Neue",sans-serif;border-bottom:3px solid transparent;transition:all .2s;cursor:pointer;}
+.phase-nav-item:hover{background:#f0f4f8;}
+.phase-nav-item.active{border-bottom-color:var(--blue-accent);}
+.phase-nav-item .phase-label{font-size:10px;letter-spacing:2px;color:var(--blue-accent);font-weight:700;margin-bottom:2px;}
+.phase-nav-item .phase-title{font-size:13px;color:var(--navy);font-weight:600;}
+.phase-nav-item:not(.active) .phase-label{color:var(--text-muted);}
+.phase-nav-item:not(.active) .phase-title{color:#6b7a99;}
+.hero{position:relative;min-height:100vh;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-mid) 60%,#0a2850 100%);display:flex;align-items:center;padding:140px 80px 80px;overflow:hidden;}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0.7;}
+.hero-content{position:relative;z-index:2;max-width:640px;}
+.hero-eyebrow{font-family:"Helvetica Neue",sans-serif;font-size:11px;letter-spacing:4px;font-weight:700;color:var(--blue-bright);margin-bottom:24px;text-transform:uppercase;}
+.hero h1{font-size:clamp(44px,6vw,72px);line-height:1.08;color:var(--white);font-weight:400;margin-bottom:8px;}
+.hero h1 em{display:block;font-style:italic;color:var(--cyan-italic);font-size:clamp(44px,6vw,72px);}
+.hero-sub{font-family:"Helvetica Neue",sans-serif;font-size:17px;line-height:1.65;color:rgba(255,255,255,0.72);margin:28px 0 40px;max-width:520px;}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-outline{background:transparent;color:var(--white);padding:12px 28px;border-radius:6px;font-family:"Helvetica Neue",sans-serif;font-size:14px;font-weight:600;border:2px solid rgba(255,255,255,0.35);transition:border-color .2s,background .2s;}
+.btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,0.06);}
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);background:var(--white);border-bottom:1px solid #e2e8f0;}
+.stat-item{padding:36px 24px;text-align:center;border-right:1px solid #e2e8f0;}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-size:36px;font-weight:300;color:var(--navy);letter-spacing:-1px;margin-bottom:6px;}
+.stat-label{font-family:"Helvetica Neue",sans-serif;font-size:12px;letter-spacing:0.5px;color:var(--text-muted);line-height:1.4;}
+section{padding:100px 80px;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-eyebrow{font-family:"Helvetica Neue",sans-serif;font-size:11px;letter-spacing:4px;font-weight:700;color:var(--blue-accent);text-transform:uppercase;margin-bottom:12px;}
+.section-title{font-size:clamp(32px,4vw,48px);font-weight:400;color:var(--navy);margin-bottom:16px;line-height:1.15;}
+.section-subtitle{font-family:"Helvetica Neue",sans-serif;font-size:16px;color:#4a5f7a;line-height:1.7;max-width:620px;}
+.approach-section{background:var(--off-white);}
+.approach-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:60px;}
+.approach-steps{display:flex;flex-direction:column;gap:0;}
+.approach-step{display:flex;gap:24px;padding:32px 0;border-bottom:1px solid #dde4ef;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s;}
+.approach-step.visible{opacity:1;transform:none;}
+.approach-step:last-child{border-bottom:none;}
+.step-num{font-size:11px;letter-spacing:2px;font-weight:700;font-family:"Helvetica Neue",sans-serif;color:var(--blue-accent);min-width:32px;padding-top:4px;}
+.step-body .step-title{font-size:18px;font-weight:600;color:var(--navy);margin-bottom:8px;}
+.step-body .step-desc{font-family:"Helvetica Neue",sans-serif;font-size:14px;color:#4a5f7a;line-height:1.65;}
+.step-tag{display:inline-block;margin-top:10px;font-family:"Helvetica Neue",sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--blue-accent);background:rgba(26,109,181,0.08);padding:4px 10px;border-radius:4px;}
+.approach-visual{position:sticky;top:180px;background:var(--navy);border-radius:16px;padding:40px;color:var(--white);border:1px solid var(--border-light);}
+.approach-visual h3{font-size:20px;margin-bottom:8px;font-weight:400;}
+.approach-visual p{font-family:"Helvetica Neue",sans-serif;font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;margin-bottom:28px;}
+.visual-tag-list{display:flex;flex-wrap:wrap;gap:8px;}
+.visual-tag{font-family:"Helvetica Neue",sans-serif;font-size:12px;padding:6px 14px;border-radius:20px;border:1px solid var(--border-light);color:var(--blue-bright);}
+.quote-block{margin-top:32px;padding:20px;border-left:3px solid var(--blue-accent);background:rgba(58,143,212,0.07);border-radius:0 8px 8px 0;}
+.quote-block p{font-size:14px;line-height:1.6;color:rgba(255,255,255,0.75);font-style:italic;margin-bottom:0;}
+.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:60px;}
+.pillar-card{background:var(--white);border-radius:12px;border:1px solid #dde4ef;padding:36px 28px;opacity:0;transform:translateY(24px);transition:opacity .5s,transform .5s,box-shadow .25s;}
+.pillar-card.visible{opacity:1;transform:none;}
+.pillar-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(13,31,60,0.10);}
+.pillar-icon{font-size:28px;margin-bottom:20px;}
+.pillar-title{font-size:18px;font-weight:600;color:var(--navy);margin-bottom:10px;}
+.pillar-sub{font-family:"Helvetica Neue",sans-serif;font-size:12px;letter-spacing:1.5px;color:var(--blue-accent);font-weight:700;margin-bottom:12px;text-transform:uppercase;}
+.pillar-body{font-family:"Helvetica Neue",sans-serif;font-size:14px;color:#4a5f7a;line-height:1.65;}
+.coming-section{background:linear-gradient(135deg,var(--navy) 0%,#0e2a56 100%);color:var(--white);text-align:center;padding:100px 80px;}
+.coming-section .section-eyebrow{color:var(--blue-bright);}
+.coming-section .section-title{color:var(--white);}
+.coming-section .section-subtitle{color:rgba(255,255,255,0.65);max-width:580px;margin:0 auto 16px;}
+.coming-badge{display:inline-block;font-family:"Helvetica Neue",sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue-bright);border:1px solid var(--blue-bright);padding:6px 16px;border-radius:20px;margin-bottom:32px;}
+.coming-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;text-align:left;max-width:900px;margin-left:auto;margin-right:auto;}
+.coming-card{background:rgba(255,255,255,0.05);border:1px solid var(--border-light);border-radius:12px;padding:28px 24px;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s;}
+.coming-card.visible{opacity:1;transform:none;}
+.coming-card .cc-icon{font-size:22px;margin-bottom:14px;}
+.coming-card .cc-title{font-size:16px;font-weight:600;color:var(--white);margin-bottom:8px;}
+.coming-card .cc-body{font-family:"Helvetica Neue",sans-serif;font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;}
+.cta-section{padding:100px 80px;text-align:center;}
+.cta-inner{max-width:640px;margin:0 auto;}
+.cta-section .section-title{font-size:36px;}
+.cta-meta{font-family:"Helvetica Neue",sans-serif;font-size:13px;color:var(--text-muted);margin-top:20px;letter-spacing:0.3px;}
+footer{background:var(--navy);color:var(--white);padding:48px 80px;display:flex;align-items:center;justify-content:space-between;}
+.footer-logo{display:flex;align-items:center;gap:12px;}
+.footer-logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--blue-bright),var(--blue-accent));clip-path:polygon(50% 0%,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);}
+.footer-brand .brand{font-size:14px;font-weight:700;letter-spacing:3px;font-family:"Helvetica Neue",sans-serif;}
+.footer-brand .sub{font-size:8px;letter-spacing:3px;opacity:0.5;font-family:"Helvetica Neue",sans-serif;}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{font-family:"Helvetica Neue",sans-serif;font-size:13px;color:rgba(255,255,255,0.5);transition:color .2s;}
+.footer-links a:hover{color:var(--white);}
+.footer-copy{font-family:"Helvetica Neue",sans-serif;font-size:12px;color:rgba(255,255,255,0.3);}
+.breadcrumb{background:var(--white);padding:12px 80px;border-bottom:1px solid #e2e8f0;font-family:"Helvetica Neue",sans-serif;font-size:13px;color:var(--text-muted);margin-top:136px;}
+.breadcrumb a{color:var(--text-muted);}
+.breadcrumb a:hover{color:var(--navy);}
+.breadcrumb span{color:var(--navy);font-weight:500;}
+@media(max-width:900px){nav{padding:0 24px;}.hero{padding:160px 24px 60px;}section{padding:60px 24px;}.approach-grid{grid-template-columns:1fr;}.pillars-grid,.coming-cards{grid-template-columns:1fr;}.stats-bar{grid-template-columns:repeat(2,1fr);}footer{flex-direction:column;gap:24px;padding:40px 24px;text-align:center;}.breadcrumb{padding:12px 24px;}.phase-nav{display:none;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon"></div>
+    <div class="nav-logo-text">
+      <span class="brand">HIVE</span>
+      <span class="sub">ADVISORY GROUP</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="/#services">Services</a>
+    <a href="/#industries">Industries</a>
+    <a href="/#approach">Approach</a>
+    <a href="/#insights">Insights</a>
+    <a href="/#about">About</a>
+    <a href="/#contact" class="btn-primary">Request a Briefing</a>
+  </div>
+</nav>
+<div class="phase-nav">
+  <a href="/phase1-ai-readiness" class="phase-nav-item">
+    <div class="phase-label">PHASE 01</div>
+    <div class="phase-title">AI Readiness Assessment</div>
+  </a>
+  <a href="/phase2-strategy-roadmap" class="phase-nav-item">
+    <div class="phase-label">PHASE 02</div>
+    <div class="phase-title">Strategy &amp; Roadmap</div>
+  </a>
+  <a href="/phase3-implementation-advisory" class="phase-nav-item active">
+    <div class="phase-label">PHASE 03</div>
+    <div class="phase-title">Implementation Advisory</div>
+  </a>
+  <a href="/phase4-change-capability" class="phase-nav-item">
+    <div class="phase-label">PHASE 04</div>
+    <div class="phase-title">Change &amp; Capability Building</div>
+  </a>
+</div>
+<div class="breadcrumb">
+  <a href="/">Home</a> &rsaquo; <a href="/#services">Services</a> &rsaquo; <span>Phase 3: Implementation Advisory</span>
+</div>
+<section class="hero" style="padding-top:0;min-height:82vh;margin-top:0;">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Phase 03 &mdash; Implementation Advisory</div>
+    <h1>Where strategy<em>becomes reality.</em></h1>
+    <p class="hero-sub">The gap between a great roadmap and real results is execution. Phase 3 is where Hive moves from advisor to active partner &mdash; guiding the decisions, teams, and trade-offs that determine whether AI investments deliver.</p>
+    <div class="hero-ctas">
+      <a href="/#contact" class="btn-primary">Request a Briefing</a>
+      <a href="/" class="btn-outline">&larr; Return to Home</a>
+    </div>
+  </div>
+</section>
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">Embedded</div>
+    <div class="stat-label">Advisory presence<br>inside your execution</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">Cross-functional</div>
+    <div class="stat-label">Alignment across tech,<br>ops &amp; leadership</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">Milestone-driven</div>
+    <div class="stat-label">Progress tied to<br>business outcomes</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">NDA</div>
+    <div class="stat-label">From day one</div>
+  </div>
+</div>
+<section class="approach-section">
+  <div class="section-inner">
+    <div class="section-eyebrow">How Phase 3 Works</div>
+    <h2 class="section-title">Advisory at the point<br>of execution.</h2>
+    <p class="section-subtitle">Implementation is where plans meet reality. Phase 3 is designed to be present at that intersection &mdash; not watching from a distance, but embedded in the decisions that matter.</p>
+    <div class="approach-grid">
+      <div class="approach-steps">
+        <div class="approach-step rev">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <div class="step-title">Initiative Launch &amp; Sequencing</div>
+            <p class="step-desc">Translating roadmap priorities into active workstreams. Aligning sponsors, sequencing dependencies, and establishing the governance rhythm that keeps execution on track.</p>
+            <span class="step-tag">Activation</span>
+          </div>
+        </div>
+        <div class="approach-step rev">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <div class="step-title">Vendor &amp; Partner Guidance</div>
+            <p class="step-desc">Advising on build vs. buy decisions, evaluating technology partners, and ensuring vendor commitments align with your strategic intent &mdash; not theirs.</p>
+            <span class="step-tag">Technology</span>
+          </div>
+        </div>
+        <div class="approach-step rev">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <div class="step-title">Decision Support &amp; Trade-off Navigation</div>
+            <p class="step-desc">Real initiatives surface hard trade-offs. We provide the context, pattern recognition, and outside perspective to help leadership make calls with confidence.</p>
+            <span class="step-tag">Leadership</span>
+          </div>
+        </div>
+        <div class="approach-step rev">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <div class="step-title">Progress Validation &amp; Course Correction</div>
+            <p class="step-desc">Milestone reviews tied to the outcomes that matter. When initiatives drift, we identify it early and help redirect before momentum is lost.</p>
+            <span class="step-tag">Accountability</span>
+          </div>
+        </div>
+      </div>
+      <div class="approach-visual">
+        <h3>What makes Phase 3 different.</h3>
+        <p>Most advisory relationships end when the strategy is delivered. Phase 3 is for organizations that want a partner at the point where strategy is tested &mdash; and results are earned.</p>
+        <div class="visual-tag-list">
+          <span class="visual-tag">Embedded Advisory</span>
+          <span class="visual-tag">Vendor Evaluation</span>
+          <span class="visual-tag">Initiative Governance</span>
+          <span class="visual-tag">Risk Navigation</span>
+          <span class="visual-tag">Stakeholder Alignment</span>
+          <span class="visual-tag">Milestone Reviews</span>
+          <span class="visual-tag">Trade-off Clarity</span>
+          <span class="visual-tag">Executive Briefing</span>
+        </div>
+        <div class="quote-block">
+          <p>"The hardest part of AI transformation isn't the strategy. It's staying committed to the right priorities when the pressure of day-to-day operations pushes back."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="section-inner">
+    <div class="section-eyebrow">What We Deliver</div>
+    <h2 class="section-title">Three commitments in every<br>Phase 3 engagement.</h2>
+    <div class="pillars-grid">
+      <div class="pillar-card rev">
+        <div class="pillar-icon">&#127919;</div>
+        <div class="pillar-sub">Strategic Continuity</div>
+        <div class="pillar-title">Protecting the plan under pressure</div>
+        <p class="pillar-body">Execution environments are noisy. Priorities compete, budgets shift, and teams get pulled. We maintain continuity between your original strategic intent and what actually gets built &mdash; so the roadmap doesn't quietly erode.</p>
+      </div>
+      <div class="pillar-card rev">
+        <div class="pillar-icon">&#9881;&#65039;</div>
+        <div class="pillar-sub">Operational Rigor</div>
+        <div class="pillar-title">Structure that accelerates, not slows</div>
+        <p class="pillar-body">The right governance framework turns ambiguity into momentum. We bring the operating cadences, decision rights, and accountability structures that allow teams to move fast without losing alignment.</p>
+      </div>
+      <div class="pillar-card rev">
+        <div class="pillar-icon">&#128200;</div>
+        <div class="pillar-sub">Outcome Orientation</div>
+        <div class="pillar-title">Relentlessly tied to what matters</div>
+        <p class="pillar-body">Every initiative in Phase 3 connects back to the financial and competitive outcomes established in your roadmap. Activity without accountability isn't progress &mdash; we keep the focus where it belongs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="coming-section">
+  <div class="section-inner">
+    <div class="coming-badge">Coming Soon</div>
+    <div class="section-eyebrow">Phase 3 Capabilities</div>
+    <h2 class="section-title">Built for the way<br>execution actually works.</h2>
+    <p class="section-subtitle">We're developing a set of structured advisory capabilities for Phase 3 engagements. The shape of each engagement will be tailored to where your organization is in the implementation journey.</p>
+    <div class="coming-cards">
+      <div class="coming-card rev">
+        <div class="cc-icon">&#128269;</div>
+        <div class="cc-title">Initiative Health Monitoring</div>
+        <p class="cc-body">A structured lens for assessing momentum, alignment, and risk across active AI workstreams &mdash; giving leadership early warning before small issues become large ones.</p>
+      </div>
+      <div class="coming-card rev">
+        <div class="cc-icon">&#128101;</div>
+        <div class="cc-title">Vendor &amp; Partner Advisory</div>
+        <p class="cc-body">Independent guidance on technology selection, integration partners, and vendor performance &mdash; without the conflicts that come with implementation-tied fees.</p>
+      </div>
+      <div class="coming-card rev">
+        <div class="cc-icon">&#128203;</div>
+        <div class="cc-title">Executive Reporting Framework</div>
+        <p class="cc-body">Clear, board-ready communication on implementation progress, tied directly to the business outcomes and investment thesis established in Phase 2.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="section-eyebrow">Ready for Phase 3?</div>
+    <h2 class="section-title">Let's talk about where your implementation stands.</h2>
+    <p class="section-subtitle" style="max-width:100%;margin-bottom:32px;">Whether you're preparing to launch, already mid-execution, or recovering from a stalled initiative &mdash; a senior Hive advisor can help you assess what Phase 3 advisory would look like for your organization.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="/#contact" class="btn-primary" style="padding:14px 32px;font-size:15px;">Request a Briefing</a>
+      <a href="/" class="btn-outline" style="padding:14px 32px;font-size:15px;border-color:rgba(13,31,60,0.3);color:var(--navy);">&larr; Return to Home</a>
+    </div>
+    <p class="cta-meta">45 minutes &middot; No pitch &middot; Senior advisor &middot; NDA available</p>
+  </div>
+</section>
+<footer>
+  <div class="footer-logo">
+    <div class="footer-logo-icon"></div>
+    <div class="footer-brand">
+      <div class="brand">HIVE</div>
+      <div class="sub">ADVISORY GROUP</div>
+    </div>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Careers</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-copy">&copy; 2025 Hive Advisory Group. All rights reserved.</div>
+</footer>
+<script>
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll(".rev").forEach((el,i)=>{el.style.transitionDelay=(i%4)*0.08+"s";obs.observe(el);});
+(function(){const cv=document.getElementById("heroCanvas");if(!cv)return;const ctx=cv.getContext("2d"),dpr=window.devicePixelRatio||1;let hexes=[],R=42,st=null;function resize(){const r=cv.getBoundingClientRect();cv.width=r.width*dpr;cv.height=r.height*dpr;cv.style.width=r.width+"px";cv.style.height=r.height+"px";ctx.setTransform(dpr,0,0,dpr,0,0);build(r.width,r.height);}function build(cw,ch){hexes=[];const W=Math.sqrt(3)*R,H3=1.5*R,cx=cw/2,cy=ch/2;for(let row=-1;row<Math.ceil(ch/H3)+2;row++){for(let col=-1;col<Math.ceil(cw/W)+2;col++){const x=col*W+(row%2===0?0:W/2),y=row*H3;hexes.push({x,y,dist:Math.sqrt((x-cx)**2+(y-cy)**2),prog:0,ph:Math.random()*1.2,gs:0.3+Math.random()*0.5});}}hexes.sort((a,b)=>a.dist-b.dist);}function draw(ts){if(!st)st=ts;const e=(ts-st)/1000,cw=cv.width/dpr,ch=cv.height/dpr;ctx.clearRect(0,0,cw,ch);const bf=e*170;for(const h of hexes){if(h.dist<=bf)h.prog=Math.min(1,(bf-h.dist)/(R*3));if(!h.prog)continue;const ease=h.prog<1?h.prog*h.prog*(3-2*h.prog):1;const rip=Math.sin((e*1.1-h.dist*0.013)*Math.PI*2)*0.5+0.5;const gl=Math.sin((e*h.gs+h.ph)*Math.PI*2)*0.5+0.5;ctx.beginPath();for(let i=0;i<6;i++){const a=Math.PI/3*i-Math.PI/6;i===0?ctx.moveTo(h.x+R*0.94*ease*Math.cos(a),h.y+R*0.94*ease*Math.sin(a)):ctx.lineTo(h.x+R*0.94*ease*Math.cos(a),h.y+R*0.94*ease*Math.sin(a));}ctx.closePath();ctx.fillStyle="rgba(26,109,181,"+(0.04+rip*0.09)*ease+")";ctx.fill();ctx.strokeStyle="rgba(58,143,212,"+(0.22+rip*0.36+gl*0.1)*ease+")";ctx.lineWidth=1.1;ctx.stroke();}requestAnimationFrame(draw);}resize();window.addEventListener("resize",resize);requestAnimationFrame(draw);})();
+</script>
+</body>
+</html>
