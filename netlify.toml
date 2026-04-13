@@ -1,2 +1,12 @@
 [build]
   publish = "."
+
+[[redirects]]
+  from = "/phase1-ai-readiness"
+  to = "/phase1-ai-readiness.html"
+  status = 200
+
+[[redirects]]
+  from = "/phase2-strategy-roadmap"
+  to = "/phase2-strategy-roadmap.html"
+  status = 200
