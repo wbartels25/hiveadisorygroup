@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+t<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -1141,11 +1141,88 @@
     </div>
     <div class="hero-trust">Trusted by leaders across manufacturing, financial services, logistics &amp; healthcare</div>
   </div>
+ <!-- HERO STATS SECTION -->
+<section class="hero-stats-section">
+  <h2 class="hero-stats-header">Collective Proven Results</h2>
+
   <div class="hero-stats">
-    <div class="hstat reveal"><div class="hstat-n">$1.2B</div><div class="hstat-l">Value identified across client engagements</div></div>
-    <div class="hstat reveal"><div class="hstat-n">22</div><div class="hstat-l">AI transformations delivered</div></div>
-    <div class="hstat reveal"><div class="hstat-n">14mo</div><div class="hstat-l">Average time to measurable ROI</div></div>
-    <div class="hstat reveal"><div class="hstat-n">8</div><div class="hstat-l">Industries served across North America</div></div>
+    <div class="hstat reveal">
+      <div class="hstat-n">$1.2B</div>
+      <div class="hstat-l">Value identified across client engagements</div>
+    </div>
+
+    <div class="hstat reveal">
+      <div class="hstat-n">22</div>
+      <div class="hstat-l">AI transformations delivered</div>
+    </div>
+
+    <div class="hstat reveal">
+      <div class="hstat-n">14mo</div>
+      <div class="hstat-l">Average time to measurable ROI</div>
+    </div>
+
+    <div class="hstat reveal">
+      <div class="hstat-n">8</div>
+      <div class="hstat-l">Industries served across North America</div>
+    </div>
+  </div>
+</section>
+
+<style>
+.hero-stats-section {
+  text-align: center;
+  margin: 80px 0;
+  border-top: 1px solid #E6ECF2;
+  padding-top: 60px;
+}
+
+.hero-stats-header {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-bottom: 40px;
+  color: #0A2540;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.hstat {
+  text-align: center;
+}
+
+.hstat-n {
+  font-size: 40px;
+  font-weight: 600;
+  color: #0A2540;
+  margin-bottom: 10px;
+}
+
+.hstat-l {
+  font-size: 14px;
+  color: #5A6B7B;
+  line-height: 1.4;
+  max-width: 180px;
+  margin: 0 auto;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .hstat-n {
+    font-size: 32px;
+  }
+}
+</style>
   </div>
 </section>
 
