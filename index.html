@@ -1416,7 +1416,8 @@ t<!DOCTYPE html>
 
     <!-- Right: form -->
     <div class="briefing-form-wrap">
-      <form class="briefing-form" onsubmit="handleBriefing(event)">
+      <form class="briefing-form" name="briefing" method="POST" data-netlify="true" onsubmit="handleBriefing(event)">
+        <input type="hidden" name="form-name" value="briefing">
         <div class="form-field">
           <label for="bf-name">Your name</label>
           <input type="text" id="bf-name" placeholder="Jane Smith" required/>
@@ -1671,8 +1672,31 @@ t<!DOCTYPE html>
 <script>
 function handleBriefing(e) {
   e.preventDefault();
-  document.querySelector('.briefing-form').style.display = 'none';
-  document.getElementById('briefing-success').style.display = 'flex';
+  var form = document.querySelector('.briefing-form');
+  var btn = form.querySelector('.briefing-submit');
+  var formData = new FormData(form);
+  formData.set('name', document.getElementById('bf-name').value);
+  formData.set('company', document.getElementById('bf-company').value);
+  formData.set('size', document.getElementById('bf-size').value);
+  formData.set('email', document.getElementById('bf-email').value);
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData).toString() })
+    .then(function(res) {
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('briefing-success').style.display = 'flex';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Request My Briefing →';
+        alert('There was a problem submitting your request. Please try again.');
+      }
+    })
+    .catch(function() {
+      btn.disabled = false;
+      btn.textContent = 'Request My Briefing →';
+      alert('There was a problem submitting your request. Please try again.');
+    });
 }
 </script>
 
