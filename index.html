@@ -1420,15 +1420,15 @@ t<!DOCTYPE html>
         <input type="hidden" name="form-name" value="briefing">
         <div class="form-field">
           <label for="bf-name">Your name</label>
-          <input type="text" id="bf-name" placeholder="Jane Smith" required/>
+          <input type="text" id="bf-name" name="name" placeholder="Jane Smith" required/>
         </div>
         <div class="form-field">
           <label for="bf-company">Company name</label>
-          <input type="text" id="bf-company" placeholder="Acme Corp" required/>
+          <input type="text" id="bf-company" name="company" placeholder="Acme Corp" required/>
         </div>
         <div class="form-field">
           <label for="bf-size">Company size</label>
-          <select id="bf-size" required>
+          <select id="bf-size" name="size" required>
             <option value="" disabled selected>Select headcount</option>
             <option value="50-200">50 – 200 employees</option>
             <option value="200-500">200 – 500 employees</option>
@@ -1439,7 +1439,7 @@ t<!DOCTYPE html>
         </div>
         <div class="form-field">
           <label for="bf-email">Work email</label>
-          <input type="email" id="bf-email" placeholder="jane@acmecorp.com" required/>
+          <input type="email" id="bf-email" name="email" placeholder="jane@acmecorp.com" required/>
         </div>
         <button type="submit" class="briefing-submit">Request My Briefing →</button>
         <p class="form-note">We'll reach out within one business day.</p>
