@@ -1,0 +1,37 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/phase1-ai-readiness"
+  to = "/phase1-ai-readiness.html"
+  status = 200
+
+[[redirects]]
+  from = "/phase2-strategy-roadmap"
+  to = "/phase2-strategy-roadmap.html"
+  status = 200
+
+[[redirects]]
+  from = "/phase3-implementation-advisory"
+  to = "/phase3-implementation-advisory.html"
+  status = 200
+
+[[redirects]]
+  from = "/phase4-change-capability"
+  to = "/phase4-change-capability.html"
+  status = 200
+
+[[redirects]]
+  from = "/client-360"
+  to = "/client360.html"
+  status = 200
+
+[[redirects]]
+  from = "/ai-risk-governance-review"
+  to = "/airiskgovernancereview.html"
+  status = 200
+
+[[redirects]]
+  from = "/ai-automation-quick-wins"
+  to = "/aiautomationquickwins.html"
+  status = 200
