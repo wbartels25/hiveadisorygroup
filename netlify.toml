@@ -50,3 +50,23 @@
   from = "/professional-services"
   to = "/professional-services.html"
   status = 200
+
+[[redirects]]
+  from = "/manufacturing"
+  to = "/manufacturing.html"
+  status = 200
+
+[[redirects]]
+  from = "/financial-services"
+  to = "/financial-services.html"
+  status = 200
+
+[[redirects]]
+  from = "/healthcare"
+  to = "/healthcare.html"
+  status = 200
+
+[[redirects]]
+  from = "/logistics"
+  to = "/logistics.html"
+  status = 200
