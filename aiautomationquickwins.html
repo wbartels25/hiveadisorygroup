@@ -60,10 +60,9 @@ html{scroll-behavior:smooth}
 body{font-family:Inter,sans-serif;background:#fff;color:var(--navy);overflow-x:hidden}
 .hdr{position:sticky;top:0;z-index:100;background:linear-gradient(120deg,#1b3a6b 0%,#16325d 55%,#112a52 100%);padding:0 56px;height:72px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(58,143,212,.2);box-shadow:0 2px 16px rgba(0,0,0,.35)}
 .logo{display:flex;align-items:center;text-decoration:none}
-.lhex{width:46px;height:46px;background:linear-gradient(135deg,#1e4a7e,#2a6ab5,#3a8fd4);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-right:14px;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%)}
-.lhex-i{width:18px;height:18px;background:rgba(255,255,255,.92);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%)}
-.lname{display:block;font-size:22px;font-weight:700;color:#fff;letter-spacing:.08em;line-height:1}
-.lsub{display:block;font-size:9px;font-weight:500;color:rgba(90,176,224,.85);letter-spacing:.2em;margin-top:2px}
+.logo-sphere{width:46px;height:46px;display:block;margin-right:14px;flex:0 0 46px}
+.lname{display:block;font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:23px;font-weight:300;color:#fff;letter-spacing:.18em;line-height:1}
+.lsub{display:block;font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:8.5px;font-weight:400;color:#7acaf5;letter-spacing:.30em;margin-top:5px;padding-left:2px}
 .nav{display:flex;align-items:center;gap:28px}
 .navl{display:flex;gap:28px}
 .navl a{color:rgba(255,255,255,.78);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.04em;transition:.2s}
@@ -138,8 +137,7 @@ body{font-family:Inter,sans-serif;background:#fff;color:var(--navy);overflow-x:h
 .cta-note{font-size:13px;color:rgba(255,255,255,.4);margin-top:20px}
 footer{background:var(--navy-dark);padding:28px 56px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(58,143,212,.15)}
 .fl{display:flex;align-items:center;text-decoration:none}
-.fl .lhex{width:36px;height:36px;margin-right:10px}
-.fl .lhex-i{width:14px;height:14px}
+.fl .logo-sphere{width:36px;height:36px;flex:0 0 36px;margin-right:10px}
 .fl .lname{font-size:17px}
 .fl .lsub{font-size:8px}
 .foot-r{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
@@ -198,7 +196,7 @@ footer{background:var(--navy-dark);padding:28px 56px;display:flex;align-items:ce
 </head>
 <body>
 <header class="hdr">
-  <a class="logo" href="/"><div class="lhex"><div class="lhex-i"></div></div><div><span class="lname">HIVE</span><span class="lsub">ADVISORY GROUP</span></div></a>
+  <a class="logo" href="/"><canvas class="logo-sphere" width="224" height="224"></canvas><div><span class="lname">HIVE</span><span class="lsub">ADVISORY GROUP</span></div></a>
   <nav class="nav">
     <div class="navl">
       <a href="/#services">Services</a>
@@ -299,7 +297,7 @@ footer{background:var(--navy-dark);padding:28px 56px;display:flex;align-items:ce
 
 <footer>
   <a class="fl logo" href="/">
-    <div class="lhex"><div class="lhex-i"></div></div>
+    <canvas class="logo-sphere" width="224" height="224"></canvas>
     <div><span class="lname">HIVE</span><span class="lsub">ADVISORY GROUP</span></div>
   </a>
   <div class="foot-r">
@@ -362,6 +360,39 @@ document.querySelectorAll(".rev").forEach((el,i) => {
     requestAnimationFrame(draw);
   }
   resize();window.addEventListener("resize",resize);requestAnimationFrame(draw);
+})();
+</script>
+<script>
+(function(){
+  function draw(c){
+  var ctx=c.getContext('2d'), D=c.width, cx=D/2, cy=D/2, R=D*0.34, hexR=R*0.082;
+  function hx(x){x=x.replace('#','');return [parseInt(x.slice(0,2),16),parseInt(x.slice(2,4),16),parseInt(x.slice(4,6),16)];}
+  function mix(a,b,t){t=Math.max(0,Math.min(1,t));var A=hx(a),B=hx(b);return 'rgb('+A.map(function(v,i){return Math.round(v+(B[i]-v)*t)}).join(',')+')';}
+  function norm(v){var m=Math.hypot(v[0],v[1],v[2]);return [v[0]/m,v[1]/m,v[2]/m];}
+  function fib(n){var p=[],ph=Math.PI*(3-Math.sqrt(5));for(var i=0;i<n;i++){var y=1-(i/(n-1))*2,r=Math.sqrt(Math.max(0,1-y*y)),th=ph*i;p.push([Math.cos(th)*r,y,Math.sin(th)*r]);}return p;}
+  var L=norm([-0.45,0.5,0.78]), PTS=fib(280), P=[];
+  for(var s=0;s<14;s++)P.push({ang:Math.random()*6.28,spd:0.005+Math.random()*0.007,rr:0.9+Math.random()*0.4,sz:0.8+Math.random()*0.7});
+  var rx=R*1.5, ry=R*0.58, t0=null;
+  function frame(ts){
+    if(!t0)t0=ts; var e=(ts-t0)/1000;
+    ctx.clearRect(0,0,D,D);
+    var ay=e*0.4, ax=-0.32+Math.sin(e*0.25)*0.05, back=[], front=[];
+    for(var k=0;k<P.length;k++){var p=P[k];p.ang+=p.spd;var z=Math.sin(p.ang);p._x=cx+Math.cos(p.ang)*rx*p.rr;p._y=cy+Math.sin(p.ang)*ry*p.rr;p._z=z;(z<0?back:front).push(p);}
+    function pd(p){var sz=(0.9+(p._z+1)/2*0.8)*p.sz*(D/224);ctx.beginPath();ctx.arc(p._x,p._y,Math.max(0.6,sz),0,6.28);ctx.fillStyle='#8fd0f5';ctx.globalAlpha=0.28+(p._z+1)/2*0.55;ctx.fill();ctx.globalAlpha=1;}
+    for(var a1=0;a1<back.length;a1++)pd(back[a1]);
+    var bg=ctx.createRadialGradient(cx-R*0.35,cy-R*0.35,R*0.1,cx,cy,R*1.02);
+    bg.addColorStop(0,'#1c477a');bg.addColorStop(1,'#0a1f3c');
+    ctx.beginPath();ctx.arc(cx,cy,R,0,6.28);ctx.fillStyle=bg;ctx.fill();
+    var c1=Math.cos(ay),s1=Math.sin(ay),c2=Math.cos(ax),s2=Math.sin(ax),arr=[];
+    for(var j=0;j<PTS.length;j++){var q=PTS[j];var x=c1*q[0]+s1*q[2],z=-s1*q[0]+c1*q[2],y=q[1];var y2=c2*y-s2*z,z2=s2*y+c2*z;arr.push([x,y2,z2]);}
+    arr.sort(function(a,b){return a[2]-b[2];});
+    for(var m=0;m<arr.length;m++){var p=arr[m];if(p[2]<-0.2)continue;var sx=cx+p[0]*R,sy=cy-p[1]*R,zt=(p[2]+1)/2,size=hexR*(0.5+0.85*zt);var b=Math.max(0,p[0]*L[0]+p[1]*L[1]+p[2]*L[2]);ctx.beginPath();for(var i2=0;i2<6;i2++){var aa=Math.PI/180*60*i2;var X=sx+size*Math.cos(aa),Y=sy+size*Math.sin(aa);i2?ctx.lineTo(X,Y):ctx.moveTo(X,Y);}ctx.closePath();ctx.globalAlpha=0.9*Math.min(1,(p[2]+0.2)/0.4);ctx.fillStyle=mix('#123763','#eaf6ff',Math.pow(b,0.85));ctx.fill();ctx.strokeStyle='rgba(6,16,32,.5)';ctx.lineWidth=0.5+0.6*zt;ctx.stroke();ctx.globalAlpha=1;}
+    for(var a2=0;a2<front.length;a2++)pd(front[a2]);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  }
+  document.querySelectorAll('.logo-sphere').forEach(draw);
 })();
 </script>
 </body>
