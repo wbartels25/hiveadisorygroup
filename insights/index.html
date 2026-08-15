@@ -61,7 +61,12 @@
   .nav-links a:hover { color: #fff; background: rgba(255,255,255,.08); }
   .nav-cta { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.4); padding: 8px 22px; border-radius: 5px; font-size: 12px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; cursor: pointer; transition: all .2s; white-space: nowrap; font-family: 'Inter', sans-serif; text-decoration: none; display: inline-flex; align-items: center; }
   .nav-cta:hover { border-color: #fff; background: rgba(255,255,255,.1); }
-  .top-bar .svg-logo { position: relative; z-index: 2; flex-shrink: 0; }
+  .top-bar  .brand-lockup{position:relative;z-index:2;display:flex;align-items:center;gap:22px;flex-shrink:0}
+  .brand-lockup .logo-sphere{width:112px;height:112px;display:block;flex:0 0 112px}
+  .brand-wm{display:flex;flex-direction:column;line-height:1}
+  .brand-wm .bw-n{font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:50px;font-weight:300;letter-spacing:.18em;color:#fff}
+  .brand-wm .bw-s{font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:10.5px;font-weight:400;letter-spacing:.30em;color:#7acaf5;margin-top:12px;padding-left:4px}
+  @media(max-width:640px){.brand-lockup{gap:14px}.brand-lockup .logo-sphere{width:76px;height:76px;flex:0 0 76px}.brand-wm .bw-n{font-size:32px}.brand-wm .bw-s{font-size:9px;letter-spacing:.24em}}
   .page-hero { background: var(--navy); padding: 72px 56px 56px; color: #fff; }
   .page-hero h1 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 44px; font-weight: 400; line-height: 1.15; letter-spacing: -.01em; }
   .page-hero .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 16px; }
@@ -91,34 +96,7 @@
 <!-- ── HEADER ── -->
 <header class="header-wrap">
   <div class="top-bar">
-    <svg class="svg-logo" width="340" height="160" viewBox="0 0 340 160" xmlns="http://www.w3.org/2000/svg">
-      <g transform="translate(8, 8)">
-        <polygon points="36,15 27,30 9,30 0,15 9,0 27,0"       fill="#1a3f6e" stroke="#3A8FD4" stroke-width="1.4"/>
-        <polygon points="36,45 27,60 9,60 0,45 9,30 27,30"     fill="#1e4a7e" stroke="#3A8FD4" stroke-width="1.4"/>
-        <polygon points="36,75 27,90 9,90 0,75 9,60 27,60"     fill="#1a3f6e" stroke="#3A8FD4" stroke-width="1.4"/>
-        <polygon points="36,105 27,120 9,120 0,105 9,90 27,90" fill="#172f5a" stroke="#2e6aaa" stroke-width="1.2" opacity="0.75"/>
-        <polygon points="63,0 54,15 36,15 27,0 36,-15 54,-15"    fill="#1e4a7e" stroke="#4a9ad4" stroke-width="1.5"/>
-        <polygon points="63,30 54,45 36,45 27,30 36,15 54,15"    fill="#2a6ab5" stroke="#5cb0e8" stroke-width="1.7"/>
-        <polygon points="63,60 54,75 36,75 27,60 36,45 54,45"    fill="#3080c8" stroke="#6ec0f0" stroke-width="1.9"/>
-        <polygon points="63,90 54,105 36,105 27,90 36,75 54,75"  fill="#2a6ab5" stroke="#5cb0e8" stroke-width="1.7"/>
-        <polygon points="90,15 81,30 63,30 54,15 63,0 81,0"      fill="#2a6ab5" stroke="#5cb0e8" stroke-width="1.7"/>
-        <polygon points="90,45 81,60 63,60 54,45 63,30 81,30"    fill="#3a8fd4" stroke="#7acaf5" stroke-width="1.9"/>
-        <polygon points="90,75 81,90 63,90 54,75 63,60 81,60"    fill="#4da8e8" stroke="#a0dcff" stroke-width="2.2"/>
-        <circle cx="72" cy="75" r="4.5" fill="#c0eaff"/>
-        <polygon points="90,105 81,120 63,120 54,105 63,90 81,90" fill="#2a6ab5" stroke="#5cb0e8" stroke-width="1.7"/>
-        <polygon points="117,0 108,15 90,15 81,0 90,-15 108,-15"    fill="#1e4a7e" stroke="#4a9ad4" stroke-width="1.5"/>
-        <polygon points="117,30 108,45 90,45 81,30 90,15 108,15"    fill="#2a6ab5" stroke="#5cb0e8" stroke-width="1.7"/>
-        <polygon points="117,60 108,75 90,75 81,60 90,45 108,45"    fill="#3080c8" stroke="#6ec0f0" stroke-width="1.9"/>
-        <polygon points="117,90 108,105 90,105 81,90 90,75 108,75"  fill="#2a6ab5" stroke="#5cb0e8" stroke-width="1.7"/>
-        <polygon points="144,15 135,30 117,30 108,15 117,0 135,0"   fill="#1e4a7e" stroke="#3A8FD4" stroke-width="1.4"/>
-        <polygon points="144,45 135,60 117,60 108,45 117,30 135,30" fill="#1a3f6e" stroke="#3A8FD4" stroke-width="1.4"/>
-        <polygon points="144,75 135,90 117,90 108,75 117,60 135,60" fill="#1a3f6e" stroke="#3A8FD4" stroke-width="1.4"/>
-        <polygon points="144,105 135,120 117,120 108,105 117,90 135,90" fill="#172f5a" stroke="#2e6aaa" stroke-width="1.2" opacity="0.75"/>
-      </g>
-      <line x1="172" y1="24" x2="172" y2="136" stroke="#4a9ad4" stroke-width="1.2" opacity="0.65"/>
-      <text x="186" y="95" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="44" font-weight="300" fill="white" letter-spacing=".18em">HIVE</text>
-      <text x="188" y="116" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="9.5" font-weight="400" fill="#7acaf5" letter-spacing=".28em">ADVISORY GROUP</text>
-    </svg>
+    <div class="brand-lockup"><canvas class="logo-sphere" width="224" height="224"></canvas><div class="brand-wm"><span class="bw-n">HIVE</span><span class="bw-s">ADVISORY GROUP</span></div></div>
   </div>
   <nav class="nav-bar">
     <div class="nav-links">
@@ -161,5 +139,38 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  function draw(c){
+  var ctx=c.getContext('2d'), D=c.width, cx=D/2, cy=D/2, R=D*0.34, hexR=R*0.082;
+  function hx(x){x=x.replace('#','');return [parseInt(x.slice(0,2),16),parseInt(x.slice(2,4),16),parseInt(x.slice(4,6),16)];}
+  function mix(a,b,t){t=Math.max(0,Math.min(1,t));var A=hx(a),B=hx(b);return 'rgb('+A.map(function(v,i){return Math.round(v+(B[i]-v)*t)}).join(',')+')';}
+  function norm(v){var m=Math.hypot(v[0],v[1],v[2]);return [v[0]/m,v[1]/m,v[2]/m];}
+  function fib(n){var p=[],ph=Math.PI*(3-Math.sqrt(5));for(var i=0;i<n;i++){var y=1-(i/(n-1))*2,r=Math.sqrt(Math.max(0,1-y*y)),th=ph*i;p.push([Math.cos(th)*r,y,Math.sin(th)*r]);}return p;}
+  var L=norm([-0.45,0.5,0.78]), PTS=fib(280), P=[];
+  for(var s=0;s<14;s++)P.push({ang:Math.random()*6.28,spd:0.005+Math.random()*0.007,rr:0.9+Math.random()*0.4,sz:0.8+Math.random()*0.7});
+  var rx=R*1.5, ry=R*0.58, t0=null;
+  function frame(ts){
+    if(!t0)t0=ts; var e=(ts-t0)/1000;
+    ctx.clearRect(0,0,D,D);
+    var ay=e*0.4, ax=-0.32+Math.sin(e*0.25)*0.05, back=[], front=[];
+    for(var k=0;k<P.length;k++){var p=P[k];p.ang+=p.spd;var z=Math.sin(p.ang);p._x=cx+Math.cos(p.ang)*rx*p.rr;p._y=cy+Math.sin(p.ang)*ry*p.rr;p._z=z;(z<0?back:front).push(p);}
+    function pd(p){var sz=(0.9+(p._z+1)/2*0.8)*p.sz*(D/224);ctx.beginPath();ctx.arc(p._x,p._y,Math.max(0.6,sz),0,6.28);ctx.fillStyle='#8fd0f5';ctx.globalAlpha=0.28+(p._z+1)/2*0.55;ctx.fill();ctx.globalAlpha=1;}
+    for(var a1=0;a1<back.length;a1++)pd(back[a1]);
+    var bg=ctx.createRadialGradient(cx-R*0.35,cy-R*0.35,R*0.1,cx,cy,R*1.02);
+    bg.addColorStop(0,'#1c477a');bg.addColorStop(1,'#0a1f3c');
+    ctx.beginPath();ctx.arc(cx,cy,R,0,6.28);ctx.fillStyle=bg;ctx.fill();
+    var c1=Math.cos(ay),s1=Math.sin(ay),c2=Math.cos(ax),s2=Math.sin(ax),arr=[];
+    for(var j=0;j<PTS.length;j++){var q=PTS[j];var x=c1*q[0]+s1*q[2],z=-s1*q[0]+c1*q[2],y=q[1];var y2=c2*y-s2*z,z2=s2*y+c2*z;arr.push([x,y2,z2]);}
+    arr.sort(function(a,b){return a[2]-b[2];});
+    for(var m=0;m<arr.length;m++){var p=arr[m];if(p[2]<-0.2)continue;var sx=cx+p[0]*R,sy=cy-p[1]*R,zt=(p[2]+1)/2,size=hexR*(0.5+0.85*zt);var b=Math.max(0,p[0]*L[0]+p[1]*L[1]+p[2]*L[2]);ctx.beginPath();for(var i2=0;i2<6;i2++){var aa=Math.PI/180*60*i2;var X=sx+size*Math.cos(aa),Y=sy+size*Math.sin(aa);i2?ctx.lineTo(X,Y):ctx.moveTo(X,Y);}ctx.closePath();ctx.globalAlpha=0.9*Math.min(1,(p[2]+0.2)/0.4);ctx.fillStyle=mix('#123763','#eaf6ff',Math.pow(b,0.85));ctx.fill();ctx.strokeStyle='rgba(6,16,32,.5)';ctx.lineWidth=0.5+0.6*zt;ctx.stroke();ctx.globalAlpha=1;}
+    for(var a2=0;a2<front.length;a2++)pd(front[a2]);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  }
+  document.querySelectorAll('.logo-sphere').forEach(draw);
+})();
+</script>
 </body>
 </html>
