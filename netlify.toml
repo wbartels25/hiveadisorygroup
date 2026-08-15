@@ -35,3 +35,18 @@
   from = "/ai-automation-quick-wins"
   to = "/aiautomationquickwins.html"
   status = 200
+
+[[redirects]]
+  from = "/law-firms"
+  to = "/law-firms.html"
+  status = 200
+
+[[redirects]]
+  from = "/accounting-firms"
+  to = "/accounting-firms.html"
+  status = 200
+
+[[redirects]]
+  from = "/professional-services"
+  to = "/professional-services.html"
+  status = 200
