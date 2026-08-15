@@ -517,7 +517,90 @@
     transition: color .2s;
   }
 
+
   a.ind-card:hover .ind-more { color: #fff; }
+
+  /* ── INDUSTRY RAIL ── */
+  .vrail {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 90;
+    width: 54px;
+    padding: 14px 0;
+    display: flex;
+    flex-direction: column;
+    background: rgba(10,28,54,.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(90,176,224,.2);
+    border-left: none;
+    border-radius: 0 14px 14px 0;
+    box-shadow: 0 10px 40px rgba(0,0,0,.3);
+    overflow: hidden;
+    transition: width .3s cubic-bezier(.4,0,.2,1);
+  }
+
+  .vrail:hover, .vrail:focus-within { width: 238px; }
+
+  .vrail-ey {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    white-space: nowrap;
+    padding: 0 0 10px 19px;
+    opacity: 0;
+    transition: opacity .2s;
+  }
+
+  .vrail:hover .vrail-ey, .vrail:focus-within .vrail-ey { opacity: .9; transition-delay: .08s; }
+
+  .vrail-i {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 0 8px 20px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background .2s;
+  }
+
+  .vrail-i:hover { background: rgba(26,109,181,.28); }
+
+  .vrail-dot {
+    flex: 0 0 auto;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1.5px solid var(--blue-sky);
+    transition: transform .2s, background .2s;
+  }
+
+  .vrail-i.live .vrail-dot { background: var(--blue-sky); }
+  .vrail-i:hover .vrail-dot { transform: scale(1.35); background: var(--blue-light); border-color: var(--blue-light); }
+
+  .vrail-l {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: rgba(255,255,255,.74);
+    opacity: 0;
+    transition: opacity .2s;
+  }
+
+  .vrail:hover .vrail-l, .vrail:focus-within .vrail-l { opacity: 1; transition-delay: .06s; }
+  .vrail-i:hover .vrail-l { color: #fff; }
+
+  @media (max-width: 1100px) { .vrail { display: none; } }
+
+.costband{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:56px;}
+.costband-i{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:40px;}
+.cb-fig{font-family:"DM Serif Display",serif;font-size:86px;line-height:.9;color:var(--blue);flex:0 0 auto;}
+.cb-ey{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;}
+.cb-h{font-family:"DM Serif Display",serif;font-size:28px;font-weight:400;font-style:italic;color:var(--navy);margin:0 0 12px;line-height:1.25;}
+.cb-p{font-size:14.5px;color:var(--text-body);line-height:1.75;margin:0;}
+@media(max-width:760px){.costband{padding:44px 24px;}.costband-i{flex-direction:column;align-items:flex-start;gap:16px;}.cb-fig{font-size:64px;}.cb-h{font-size:23px;}}
 
   /* ── APPROACH ── */
   .approach {
@@ -1152,6 +1235,18 @@
 </head>
 <body>
 
+<!-- ── INDUSTRY RAIL ── -->
+<nav class="vrail" aria-label="Industries">
+  <span class="vrail-ey">Industries</span>
+  <a class="vrail-i" href="#industries"><span class="vrail-dot"></span><span class="vrail-l">Manufacturing &amp; Supply Chain</span></a>
+  <a class="vrail-i" href="#industries"><span class="vrail-dot"></span><span class="vrail-l">Financial Services</span></a>
+  <a class="vrail-i" href="#industries"><span class="vrail-dot"></span><span class="vrail-l">Healthcare &amp; Life Sciences</span></a>
+  <a class="vrail-i" href="#industries"><span class="vrail-dot"></span><span class="vrail-l">Logistics &amp; Distribution</span></a>
+  <a class="vrail-i live" href="/law-firms"><span class="vrail-dot"></span><span class="vrail-l">Law Firms</span></a>
+  <a class="vrail-i live" href="/accounting-firms"><span class="vrail-dot"></span><span class="vrail-l">Accounting Firms</span></a>
+  <a class="vrail-i live" href="/professional-services"><span class="vrail-dot"></span><span class="vrail-l">Professional Services</span></a>
+</nav>
+
 <!-- ── HEADER ── -->
 <header class="header-wrap">
   <div class="top-bar">
@@ -1449,6 +1544,17 @@
 </section>
 
 <!-- ── BRIEFING REQUEST ── -->
+<section class="costband">
+  <div class="costband-i">
+    <div class="cb-fig rev">&#8531;</div>
+    <div class="cb-txt">
+      <div class="cb-ey rev">What it costs to work with us</div>
+      <h2 class="cb-h rev">Senior-advisor expertise at a third of the cost.</h2>
+      <p class="cb-p rev">Our advisors came out of the global consulting firms and the hyperscaler AI teams. Here you work with them directly. No pyramid of juniors billing under a partner&rsquo;s name, and none of the overhead baked into a large firm&rsquo;s rate card.</p>
+    </div>
+  </div>
+</section>
+
 <section class="briefing-sec" id="contact">
 
   <!-- Honeycomb background SVG -->
