@@ -204,6 +204,22 @@
   .nav-links .nav-menu a:hover { background: rgba(26,109,181,.3); color: #fff; }
   .nav-links .nav-menu a::after { display: none; }
 
+  .nav-menu-h {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(122,202,245,.7);
+    padding: 9px 18px 5px;
+    white-space: nowrap;
+  }
+
+  .nav-menu-h ~ .nav-menu-h {
+    border-top: 1px solid rgba(90,176,224,.14);
+    margin-top: 6px;
+    padding-top: 11px;
+  }
+
   /* ── ANCHOR OFFSET (sticky header) ── */
   #home, #featured, #services, #industries, #approach, #tech, #team, #contact {
     scroll-margin-top: calc(var(--hdr-h, 300px) + 12px);
@@ -1260,7 +1276,20 @@
   </div>
   <nav class="nav-bar">
     <div class="nav-links">
-      <a href="#services">Services</a>
+      <div class="nav-drop">
+        <a href="#services">Services<span class="nav-caret">&#9662;</span></a>
+        <div class="nav-menu">
+          <div class="nav-menu-h">Start here</div>
+          <a href="/client-360">Client 360</a>
+          <a href="/ai-risk-governance-review">AI Risk &amp; Governance Review</a>
+          <a href="/ai-automation-quick-wins">AI Automation &amp; Quick Wins</a>
+          <div class="nav-menu-h">The full program</div>
+          <a href="/phase1-ai-readiness">Phase 01 &middot; AI Readiness Assessment</a>
+          <a href="/phase2-strategy-roadmap">Phase 02 &middot; Strategy &amp; Roadmap</a>
+          <a href="/phase3-implementation-advisory">Phase 03 &middot; Implementation Advisory</a>
+          <a href="/phase4-change-capability">Phase 04 &middot; Change &amp; Capability</a>
+        </div>
+      </div>
       <div class="nav-drop">
         <a href="#industries">Industries<span class="nav-caret">&#9662;</span></a>
         <div class="nav-menu">
@@ -1401,7 +1430,7 @@
       <svg class="svc-icon" viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="14" stroke="#1A6DB5" stroke-width="1.5"/><path d="M13 19h12M19 13v12" stroke="#1A6DB5" stroke-width="1.5" stroke-linecap="round"/></svg>
       <div class="svc-title">AI Readiness Assessment</div>
       <div class="svc-body">Where are you today? We map your data, talent, and infrastructure against AI opportunity across the enterprise.</div>
-      <a href="/phase1-ai-readiness.html" class="svc-link">Learn more →</a>
+      <a href="/phase1-ai-readiness" class="svc-link">Learn more →</a>
     </div>
     <div class="svc-card featured">
       <div class="svc-num">Phase 02</div>
