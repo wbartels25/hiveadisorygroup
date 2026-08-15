@@ -11,10 +11,10 @@ body{font-family:"Georgia",serif;color:var(--navy);background:var(--white);overf
 a{text-decoration:none;color:inherit;}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,31,60,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border-light);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;}
 .nav-logo{display:flex;align-items:center;gap:12px;color:var(--white);}
-.nav-logo-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--blue-bright),var(--blue-accent));clip-path:polygon(50% 0%,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);}
+  .logo-sphere{width:40px;height:40px;display:block;flex:0 0 40px;}
 .nav-logo-text{display:flex;flex-direction:column;line-height:1;}
-.nav-logo-text .brand{font-size:18px;font-weight:700;letter-spacing:3px;font-family:"Helvetica Neue",sans-serif;}
-.nav-logo-text .sub{font-size:8px;letter-spacing:3px;opacity:0.6;font-family:"Helvetica Neue",sans-serif;margin-top:4px;}
+.nav-logo-text .brand{font-size:18px;font-weight:300;letter-spacing:3px;font-family:"Helvetica Neue",sans-serif;}
+.nav-logo-text .sub{font-size:8px;letter-spacing:3px;color:#7acaf5;opacity:1;font-family:"Helvetica Neue",sans-serif;margin-top:4px;}
 .nav-links{display:flex;align-items:center;gap:32px;}
 .nav-links a{color:rgba(255,255,255,0.75);font-family:"Helvetica Neue",sans-serif;font-size:13px;letter-spacing:0.5px;transition:color .2s;}
 .nav-links a:hover{color:var(--white);}
@@ -133,7 +133,7 @@ footer{background:var(--navy);color:var(--white);padding:48px 80px;display:flex;
 
 <nav>
   <a href="/" class="nav-logo">
-    <div class="nav-logo-icon"></div>
+    <canvas class="logo-sphere" width="224" height="224"></canvas>
     <div class="nav-logo-text">
       <span class="brand">HIVE</span>
       <span class="sub">ADVISORY GROUP</span>
@@ -425,6 +425,39 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.approach-step, .pillar-card, .training-card').forEach(el => observer.observe(el));
+</script>
+<script>
+(function(){
+  function draw(c){
+  var ctx=c.getContext('2d'), D=c.width, cx=D/2, cy=D/2, R=D*0.34, hexR=R*0.082;
+  function hx(x){x=x.replace('#','');return [parseInt(x.slice(0,2),16),parseInt(x.slice(2,4),16),parseInt(x.slice(4,6),16)];}
+  function mix(a,b,t){t=Math.max(0,Math.min(1,t));var A=hx(a),B=hx(b);return 'rgb('+A.map(function(v,i){return Math.round(v+(B[i]-v)*t)}).join(',')+')';}
+  function norm(v){var m=Math.hypot(v[0],v[1],v[2]);return [v[0]/m,v[1]/m,v[2]/m];}
+  function fib(n){var p=[],ph=Math.PI*(3-Math.sqrt(5));for(var i=0;i<n;i++){var y=1-(i/(n-1))*2,r=Math.sqrt(Math.max(0,1-y*y)),th=ph*i;p.push([Math.cos(th)*r,y,Math.sin(th)*r]);}return p;}
+  var L=norm([-0.45,0.5,0.78]), PTS=fib(280), P=[];
+  for(var s=0;s<14;s++)P.push({ang:Math.random()*6.28,spd:0.005+Math.random()*0.007,rr:0.9+Math.random()*0.4,sz:0.8+Math.random()*0.7});
+  var rx=R*1.5, ry=R*0.58, t0=null;
+  function frame(ts){
+    if(!t0)t0=ts; var e=(ts-t0)/1000;
+    ctx.clearRect(0,0,D,D);
+    var ay=e*0.4, ax=-0.32+Math.sin(e*0.25)*0.05, back=[], front=[];
+    for(var k=0;k<P.length;k++){var p=P[k];p.ang+=p.spd;var z=Math.sin(p.ang);p._x=cx+Math.cos(p.ang)*rx*p.rr;p._y=cy+Math.sin(p.ang)*ry*p.rr;p._z=z;(z<0?back:front).push(p);}
+    function pd(p){var sz=(0.9+(p._z+1)/2*0.8)*p.sz*(D/224);ctx.beginPath();ctx.arc(p._x,p._y,Math.max(0.6,sz),0,6.28);ctx.fillStyle='#8fd0f5';ctx.globalAlpha=0.28+(p._z+1)/2*0.55;ctx.fill();ctx.globalAlpha=1;}
+    for(var a1=0;a1<back.length;a1++)pd(back[a1]);
+    var bg=ctx.createRadialGradient(cx-R*0.35,cy-R*0.35,R*0.1,cx,cy,R*1.02);
+    bg.addColorStop(0,'#1c477a');bg.addColorStop(1,'#0a1f3c');
+    ctx.beginPath();ctx.arc(cx,cy,R,0,6.28);ctx.fillStyle=bg;ctx.fill();
+    var c1=Math.cos(ay),s1=Math.sin(ay),c2=Math.cos(ax),s2=Math.sin(ax),arr=[];
+    for(var j=0;j<PTS.length;j++){var q=PTS[j];var x=c1*q[0]+s1*q[2],z=-s1*q[0]+c1*q[2],y=q[1];var y2=c2*y-s2*z,z2=s2*y+c2*z;arr.push([x,y2,z2]);}
+    arr.sort(function(a,b){return a[2]-b[2];});
+    for(var m=0;m<arr.length;m++){var p=arr[m];if(p[2]<-0.2)continue;var sx=cx+p[0]*R,sy=cy-p[1]*R,zt=(p[2]+1)/2,size=hexR*(0.5+0.85*zt);var b=Math.max(0,p[0]*L[0]+p[1]*L[1]+p[2]*L[2]);ctx.beginPath();for(var i2=0;i2<6;i2++){var aa=Math.PI/180*60*i2;var X=sx+size*Math.cos(aa),Y=sy+size*Math.sin(aa);i2?ctx.lineTo(X,Y):ctx.moveTo(X,Y);}ctx.closePath();ctx.globalAlpha=0.9*Math.min(1,(p[2]+0.2)/0.4);ctx.fillStyle=mix('#123763','#eaf6ff',Math.pow(b,0.85));ctx.fill();ctx.strokeStyle='rgba(6,16,32,.5)';ctx.lineWidth=0.5+0.6*zt;ctx.stroke();ctx.globalAlpha=1;}
+    for(var a2=0;a2<front.length;a2++)pd(front[a2]);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  }
+  document.querySelectorAll('.logo-sphere').forEach(draw);
+})();
 </script>
 </body>
 </html>
