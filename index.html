@@ -500,6 +500,25 @@ t<!DOCTYPE html>
     line-height: 1.6;
   }
 
+  a.ind-card {
+    text-decoration: none;
+    display: block;
+  }
+
+  .ind-card.wide { grid-column: span 2; }
+
+  .ind-more {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    color: var(--blue-light);
+    transition: color .2s;
+  }
+
+  a.ind-card:hover .ind-more { color: #fff; }
+
   /* ── APPROACH ── */
   .approach {
     background: var(--cloud);
@@ -920,6 +939,7 @@ t<!DOCTYPE html>
     .svc-grid { grid-template-columns: 1fr 1fr; }
     .ind-grid { grid-template-columns: 1fr; }
     .ind-card.large { grid-row: auto; }
+    .ind-card.wide { grid-column: auto; }
     .steps { grid-template-columns: 1fr 1fr; }
     .tech-logos { grid-template-columns: 1fr 1fr; }
     .team-sec { grid-template-columns: 1fr; }
@@ -1324,11 +1344,24 @@ t<!DOCTYPE html>
       <div class="ind-title">Route intelligence, warehouse automation &amp; carrier AI</div>
       <div class="ind-body" style="margin-top:8px;">End-to-end logistics intelligence from last-mile to freight procurement.</div>
     </div>
-    <div class="ind-card">
+    <a href="/law-firms" class="ind-card">
+      <div class="ind-tag">Law Firms</div>
+      <div class="ind-title">Document review, knowledge capture &amp; AI governance</div>
+      <div class="ind-body" style="margin-top:8px;">Your associates are already using it. We make sure it runs under partner supervision, with confidentiality and privilege intact.</div>
+      <span class="ind-more">Learn more &rarr;</span>
+    </a>
+    <a href="/accounting-firms" class="ind-card">
+      <div class="ind-tag">Accounting Firms</div>
+      <div class="ind-title">Busy-season capacity without the headcount</div>
+      <div class="ind-body" style="margin-top:8px;">Document intake, workpaper prep, and the advisory margin you free up, with independence requirements held tight.</div>
+      <span class="ind-more">Learn more &rarr;</span>
+    </a>
+    <a href="/professional-services" class="ind-card wide">
       <div class="ind-tag">Professional Services</div>
       <div class="ind-title">Knowledge management, proposal AI &amp; delivery intelligence</div>
-      <div class="ind-body" style="margin-top:8px;">Transform how your firm captures, deploys, and monetizes institutional knowledge, without a massive IT team to run it.</div>
-    </div>
+      <div class="ind-body" style="margin-top:8px;">Consulting, engineering, architecture, staffing, agencies. You sell time, and AI changes the math on how that time gets priced.</div>
+      <span class="ind-more">Learn more &rarr;</span>
+    </a>
   </div>
 </section>
 
