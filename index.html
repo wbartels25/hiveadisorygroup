@@ -204,6 +204,11 @@
   .nav-links .nav-menu a:hover { background: rgba(26,109,181,.3); color: #fff; }
   .nav-links .nav-menu a::after { display: none; }
 
+  /* ── ANCHOR OFFSET (sticky header) ── */
+  #home, #featured, #services, #industries, #approach, #tech, #team, #contact {
+    scroll-margin-top: calc(var(--hdr-h, 300px) + 12px);
+  }
+
   .nav-cta {
     background: transparent;
     color: #fff;
@@ -1939,6 +1944,20 @@ function handleBriefing(e) {
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
+})();
+</script>
+
+<script>
+(function(){
+  var hdr = document.querySelector('.header-wrap');
+  if (!hdr) return;
+  function setH(){
+    document.documentElement.style.setProperty('--hdr-h', hdr.offsetHeight + 'px');
+  }
+  setH();
+  window.addEventListener('resize', setH);
+  window.addEventListener('load', setH);
+  if (window.ResizeObserver) new ResizeObserver(setH).observe(hdr);
 })();
 </script>
 
