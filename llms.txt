@@ -1,0 +1,33 @@
+# Hive Advisory Group
+
+> Hive Advisory Group is a senior-only, vendor-neutral AI strategy and governance advisory practice based in Nashville, Tennessee. It works with mid-market companies, typically 50 to 500 employees. Advisors come from Capgemini, Accenture and McKinsey, the advisor who scopes an engagement delivers it, and the firm does not resell software or accept platform referral fees.
+
+Engagements usually begin with a 30-minute briefing with a senior advisor. An NDA is in place before confidential information is shared. Contact: info@hiveadvisorygroup.com
+
+## Engagements
+
+- [Client 360](https://hiveadvisorygroup.com/client-360): Independent executive research into where a company's own clients are taking AI, for vendors and service firms planning products and forecasts.
+- [AI Risk & Governance Review](https://hiveadvisorygroup.com/ai-risk-governance-review): Four weeks, fixed fee. Maps where AI is actually used, reconciles it against contracts and commitments, and delivers a governance roadmap.
+- [AI Automation & Quick Wins](https://hiveadvisorygroup.com/ai-automation-quick-wins): Ranks automation opportunities by payback, scopes the best few and provides senior oversight through delivery.
+- [AI in Procurement](https://hiveadvisorygroup.com/ai-in-procurement): Four-week, fixed-fee diagnostic mapping AI use across sourcing and the supplier base against supplier agreements and data terms.
+- [AI Readiness Assessment](https://hiveadvisorygroup.com/phase1-ai-readiness): Six-week assessment of data, technology, talent, process and governance readiness for AI.
+- [AI Strategy & Roadmap](https://hiveadvisorygroup.com/phase2-strategy-roadmap): A 12 to 36 month roadmap tied to revenue and margin.
+- [AI Implementation Advisory](https://hiveadvisorygroup.com/phase3-implementation-advisory): Senior, vendor-neutral guidance through vendor selection, integration and go-live.
+- [AI Change & Capability Building](https://hiveadvisorygroup.com/phase4-change-capability): Change management, role-based AI training and adoption measurement.
+
+## Industries
+
+- [Manufacturing & Supply Chain](https://hiveadvisorygroup.com/manufacturing)
+- [Financial Services](https://hiveadvisorygroup.com/financial-services)
+- [Healthcare & Life Sciences](https://hiveadvisorygroup.com/healthcare)
+- [Logistics & Distribution](https://hiveadvisorygroup.com/logistics)
+- [Law Firms](https://hiveadvisorygroup.com/law-firms)
+- [Accounting Firms](https://hiveadvisorygroup.com/accounting-firms)
+- [Professional Services](https://hiveadvisorygroup.com/professional-services)
+
+## Resources
+
+- [AI Strategy & Governance FAQ](https://hiveadvisorygroup.com/faq): Answers to common questions from mid-market leaders about AI strategy, governance, shadow AI and working with an independent advisor.
+- [Your AI footprint is bigger than your AI budget](https://hiveadvisorygroup.com/insights/ai-footprint): Briefing on shadow AI in the mid-market with a two-week AI usage inventory method.
+- [Nashville](https://hiveadvisorygroup.com/nashville): Hive's home base and work with Tennessee companies.
+- [About](https://hiveadvisorygroup.com/about): How the firm is structured and what clients can review before engaging.

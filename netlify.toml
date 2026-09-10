@@ -1,6 +1,19 @@
 [build]
   publish = "."
 
+# Retired duplicate of the Phase 04 page
+[[redirects]]
+  from = "/phase4-capability-building"
+  to = "/phase4-change-capability"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/phase4-capability-building.html"
+  to = "/phase4-change-capability"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/phase1-ai-readiness"
   to = "/phase1-ai-readiness.html"
@@ -74,4 +87,19 @@
 [[redirects]]
   from = "/privacy"
   to = "/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/ai-in-procurement"
+  to = "/ai-in-procurement.html"
+  status = 200
+
+[[redirects]]
+  from = "/nashville"
+  to = "/nashville.html"
+  status = 200
+
+[[redirects]]
+  from = "/faq"
+  to = "/faq.html"
   status = 200
